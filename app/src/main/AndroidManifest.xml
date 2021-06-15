@@ -3,6 +3,7 @@
     package="com.nmp.myapplication">
     <!-- Agar aplikasi dapat membaca data melalui internet, perlu permision internet access -->
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,12 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLulus27"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity">
+        <activity android:name=".AddMataKuliahActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
     </application>
 

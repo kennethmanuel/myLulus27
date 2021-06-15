@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
             val pin = inputPin.text.toString()
 
             if (nrp.isNotEmpty() && pin.isNotEmpty()) {
+                if ()
                 val q = Volley.newRequestQueue(this)
                 val url = "http://10.0.2.2/mylulus/cek_login.php"
                 val stringRequest = object : StringRequest(
