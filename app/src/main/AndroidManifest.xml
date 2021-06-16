@@ -12,13 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLulus27"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Register"></activity>
-        <activity android:name=".AmbilMatkul">
+        <activity android:name=".Register">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".AmbilMatkul">
+
         </activity>
         <activity android:name=".CardMatkul" />
         <activity android:name=".MainActivity"></activity>
