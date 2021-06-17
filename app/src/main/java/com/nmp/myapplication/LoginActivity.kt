@@ -1,5 +1,6 @@
 package com.nmp.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,9 +19,9 @@ class LoginActivity : AppCompatActivity() {
             val pin = inputPin.text.toString()
 
             if (nrp.isNotEmpty() && pin.isNotEmpty()) {
-                if (nrp.length == 9 && pin.length == 6){
+                if (nrp.length == 9 && pin.length == 8){
                     val q = Volley.newRequestQueue(this)
-                    val url = "http://10.0.2.2/mylulus/cek_login.php"
+                    val url = "http://192.168.100.5/ubaya/login.php"
                     val stringRequest = object : StringRequest(
                         Method.POST,
                         url,
@@ -42,13 +43,18 @@ class LoginActivity : AppCompatActivity() {
 
                     }
                     q.add(stringRequest)
+                    Toast.makeText(this, "Berhasil Login", Toast.LENGTH_SHORT).show()
                 }
-                else if (nrp.length != 8 || pin.length != 8){
+                else{
                     Toast.makeText(this, "NRP atau/dan Pin memiliki panjang tidak sesuai kriteria!", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "NRP atau/dan Pin harus diisi terlebih dahulu!", Toast.LENGTH_SHORT).show()
             }
+        }
+        btnDaftar.setOnClickListener {
+            val intent = Intent(this, Register::class.java)
+            startActivity(intent)
         }
     }
 }
