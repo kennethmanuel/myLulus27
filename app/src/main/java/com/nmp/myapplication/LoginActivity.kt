@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +41,12 @@ class LoginActivity : AppCompatActivity() {
 
                             return params
                         }
-
                     }
                     q.add(stringRequest)
                     Toast.makeText(this, "Berhasil Login", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 else{
                     Toast.makeText(this, "NRP atau/dan Pin memiliki panjang tidak sesuai kriteria!", Toast.LENGTH_SHORT).show()
