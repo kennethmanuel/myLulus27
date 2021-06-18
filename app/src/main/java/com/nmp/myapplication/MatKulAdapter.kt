@@ -11,7 +11,6 @@ class MatKulAdapter(val matkuls:ArrayList<MataKuliah>)
     : RecyclerView.Adapter<MatKulAdapter.matkulViewHolder>() {
 
     class matkulViewHolder(val v: View): RecyclerView.ViewHolder(v){
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): matkulViewHolder {

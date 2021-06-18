@@ -20,5 +20,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         fragments.add(fragmentMatkul())
+        viewPage.adapter = Myadapter(this, fragments)
     }
 }

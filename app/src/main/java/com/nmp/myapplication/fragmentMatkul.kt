@@ -28,6 +28,7 @@ class fragmentMatkul : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     var matkuls:ArrayList<MataKuliah> = ArrayList()
+    var v:View ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,11 +58,10 @@ class fragmentMatkul : Fragment() {
                                 playObj.getString("nama"),
                                 playObj.getInt("sks")
                             )
-
                             matkuls.add(matkulss)
                         }
                         updateList()
-                        Log.d("CekIsArray",matkuls.toString())
+                        Log.d("cekisiarray",matkuls.toString())
                     }
                 },
                 {
@@ -79,8 +79,8 @@ class fragmentMatkul : Fragment() {
 
     fun updateList() {
         val  lm:LinearLayoutManager = LinearLayoutManager(activity)
-        var recyclerView = view?.findViewById<RecyclerView>(R.id.matkulView)
-        recyclerView?.layoutManager
+        var recyclerView = v?.findViewById<RecyclerView>(R.id.matkulView)
+        recyclerView?.layoutManager = lm
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = MatKulAdapter(matkuls)
     }
@@ -90,7 +90,8 @@ class fragmentMatkul : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_matkul, container, false)
+        v = inflater.inflate(R.layout.fragment_matkul, container, false)
+        return v
     }
 
     companion object {
