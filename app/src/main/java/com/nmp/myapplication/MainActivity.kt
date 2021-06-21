@@ -20,6 +20,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         fragments.add(fragmentMatkul())
+        fragments.add(fragmentKelulusan())
+        fragments.add(fragmentProfil())
         viewPage.adapter = Myadapter(this, fragments)
+        viewPage.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+
+            }
+        })
     }
 }
