@@ -15,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        var success = 0
         btnMasuk.setOnClickListener {
             val nrp = inputNRP.text.toString()
             val pin = inputPin.text.toString()
@@ -22,15 +23,16 @@ class LoginActivity : AppCompatActivity() {
             if (nrp.isNotEmpty() && pin.isNotEmpty()) {
                 if (nrp.length == 9 && pin.length == 8){
                     val q = Volley.newRequestQueue(this)
-                    val url = "http://192.168.100.5/ubaya/login.php"
+                    val url = "http://10.0.2.2/mylulus/cek_login.php"
                     val stringRequest = object : StringRequest(
                         Method.POST,
                         url,
                         {
                             Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+                            success = 1
                         },
                         {
-                            Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
                         }
                     ) {
                         override fun getParams(): MutableMap<String, String> {
@@ -43,13 +45,15 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                     q.add(stringRequest)
-                    Toast.makeText(this, "Berhasil Login", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+
+                    if(success == 1) {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
                 else{
-                    Toast.makeText(this, "NRP atau/dan Pin memiliki panjang tidak sesuai kriteria!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "NRP atau/dan Pin memiliki panjang tidak sesuai kriteria!", Toast.LENGTH_LONG).show()
                 }
             } else {
                 Toast.makeText(this, "NRP atau/dan Pin harus diisi terlebih dahulu!", Toast.LENGTH_SHORT).show()
