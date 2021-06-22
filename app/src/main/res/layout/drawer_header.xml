@@ -18,12 +18,12 @@
         app:srcCompat="@drawable/ubaya" />
 
     <TextView
-        android:id="@+id/txtNrp"
+        android:id="@+id/txtNamaMhs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="124dp"
-        android:text="160419000"
+        android:text="Nama"
         android:textAppearance="@style/pagetitleexpanded"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +37,6 @@
         android:textAppearance="@style/subtitle"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNrp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNamaMhs" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

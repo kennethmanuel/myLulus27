@@ -23,13 +23,28 @@ class LoginActivity : AppCompatActivity() {
             if (nrp.isNotEmpty() && pin.isNotEmpty()) {
                 if (nrp.length == 9 && pin.length == 8){
                     val q = Volley.newRequestQueue(this)
-                    val url = "http://10.0.2.2/mylulus/cek_login.php"
+                    val url = "http://10.0.2.2/mylulus/get_mahasiswa.php"
                     val stringRequest = object : StringRequest(
-                        Method.POST,
-                        url,
+                        Method.POST, url,
                         {
-                            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
-                            success = 1
+                            //to get the JSON obj
+                            val obj = JSONObject(it)
+
+                            //first, check the result key
+                            if(obj.getString("result") == "OK"){
+                                //get the JSON obj
+                                val data = obj.getJSONArray("data")
+                                val mhsObj = data.getJSONObject(0)
+
+                                //put mahasiswa NRP, nama, and angkatan to global
+                                Global.nrp = mhsObj.getString("nrp")
+                                Global.nama = mhsObj.getString("nama")
+                                Global.angkatan = mhsObj.getInt("angkatan")
+                                Toast.makeText(this, "Selamat datang, ${Global.nama}.", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
                         },
                         {
                             Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
@@ -46,11 +61,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                     q.add(stringRequest)
 
-                    if(success == 1) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
                 }
                 else{
                     Toast.makeText(this, "NRP atau/dan Pin memiliki panjang tidak sesuai kriteria!", Toast.LENGTH_LONG).show()

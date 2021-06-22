@@ -39,12 +39,12 @@ class Register : AppCompatActivity() {
                                 val tahunMasuk = txtTahunMasuk.text.toString()
 
                                 val stringRequest = object : StringRequest(
-                                    Request.Method.POST, url,
-                                    Response.Listener {
+                                    Method.POST, url,
+                                    {
                                         Log.d("register", it)
                                         finish()
                                     },
-                                    Response.ErrorListener {
+                                    {
                                         Log.d("register", it.message.toString())
                                     }) {
                                     override fun getParams(): MutableMap<String, String> {

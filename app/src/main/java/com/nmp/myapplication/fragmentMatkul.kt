@@ -1,5 +1,6 @@
 package com.nmp.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,7 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.activity_card_matkul.*
+import kotlinx.android.synthetic.main.activity_card_matkul.view.*
 import org.json.JSONObject
+import kotlinx.android.synthetic.main.fragment_matkul.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,20 +31,32 @@ class fragmentMatkul : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    var matkuls:ArrayList<MataKuliah> = ArrayList()
     var v:View ?= null
+
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        v = inflater.inflate(R.layout.fragment_matkul, container, false)
+        return v
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            arguments?.let {
+            }
+        }
+    }
 
+    fun volley(){
+        val q = Volley.newRequestQueue(activity)
+        val url = "http://10.0.2.2/mylulus/get_matkul.php"
 
-            val q = Volley.newRequestQueue(activity)
-            val url = "http://192.168.100.5/ubaya/getMatkul.php"
-
-            var stringRequest = StringRequest(
+        var stringRequest = StringRequest(
                 Request.Method.POST, url,
                 {
                     Log.d("apiresult", it)
@@ -51,48 +67,41 @@ class fragmentMatkul : Fragment() {
                         val data = obj.getJSONArray("data")
 
                         for (i in 0 until data.length()){
-                            val playObj = data.getJSONObject(i)
+                            var playObj = data.getJSONObject(i)
 
-                            val matkulss = MataKuliah(
-                                playObj.getString("kode"),
-                                playObj.getString("nama"),
-                                playObj.getInt("sks")
+                            var matkulss = MataKuliah(
+                                    playObj.getString("kode"),
+                                    playObj.getString("nama"),
+                                    playObj.getInt("sks")
                             )
-                            matkuls.add(matkulss)
+                            Global.matkuls.add(matkulss)
                         }
                         updateList()
-                        Log.d("cekisiarray",matkuls.toString())
+                        Log.d("cekisiarray",Global.matkuls.toString())
                     }
                 },
                 {
                     Log.e("apiresult", it.message.toString())
                 })
-            q.add(stringRequest)
-            arguments?.let {
-            }
-        }
+        q.add(stringRequest)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        volley()
     }
 
     fun updateList() {
-        val  lm:LinearLayoutManager = LinearLayoutManager(activity)
-        var recyclerView = v?.findViewById<RecyclerView>(R.id.matkulView)
-        recyclerView?.layoutManager = lm
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.adapter = MatKulAdapter(matkuls)
+        val lm = LinearLayoutManager(activity)
+        view?.matkulView?.let{
+            it.layoutManager = lm
+            it.setHasFixedSize(true)
+            //init the adapter
+            //context obj can be accessed through parent activity
+            it.adapter = MatKulAdapter(activity!!.applicationContext)
+        }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_matkul, container, false)
-        return v
-    }
 
     companion object {
         /**

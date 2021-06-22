@@ -10,20 +10,24 @@
             android:title="Mata Kuliah" />
         <item
             android:id="@+id/itemKelulusan"
+            android:checkable="true"
             android:icon="@drawable/ic_baseline_school_24"
             android:title="Cek Kelulusan" />
         <item
             android:id="@+id/itemProfil"
+            android:checkable="true"
             android:icon="@drawable/ic_baseline_person_24"
             android:title="Profil" />
     </group>
     <group android:id="@+id/menuBottom" >
         <item
             android:id="@+id/itemHubungi"
+            android:checkable="true"
             android:icon="@drawable/ic_baseline_email_24"
             android:title="Hubungi Kami" />
         <item
             android:id="@+id/itemKeluar"
+            android:checkable="true"
             android:icon="@drawable/ic_baseline_logout_24"
             android:title="Keluar" />
     </group>
