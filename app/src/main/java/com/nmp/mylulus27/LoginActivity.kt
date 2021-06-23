@@ -1,8 +1,7 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -25,7 +24,32 @@ class LoginActivity : AppCompatActivity() {
                         Method.POST,
                         url,
                         {
+<<<<<<< Updated upstream:app/src/main/java/com/nmp/myapplication/LoginActivity.kt
                             Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+=======
+                            //to get the JSON obj
+                            val obj = JSONObject(it)
+
+                            //first, check the result key
+                            if(obj.getString("result") == "OK"){
+                                //get the JSON obj
+                                val data = obj.getJSONArray("message")
+                                val mhsObj = data.getJSONObject(0)
+
+                                //put mahasiswa NRP, nama, and angkatan to global
+                                Global.nrp = mhsObj.getString("nrp")
+                                Global.nama = mhsObj.getString("nama")
+                                Global.angkatan = mhsObj.getInt("angkatan")
+                                Toast.makeText(this, "Selamat datang, ${Global.nama}.", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                            else{
+                                val data = obj.getString("message")
+                                Toast.makeText(this, data, Toast.LENGTH_SHORT).show()
+                            }
+>>>>>>> Stashed changes:app/src/main/java/com/nmp/mylulus27/LoginActivity.kt
                         },
                         {
                             Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()

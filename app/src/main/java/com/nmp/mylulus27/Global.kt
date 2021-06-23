@@ -1,4 +1,4 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
 object Global {
     val nisbi:Array<Nisbi> = arrayOf(
