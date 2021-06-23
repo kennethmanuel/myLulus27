@@ -54,7 +54,7 @@ class fragmentMatkul : Fragment() {
 
     fun volley(){
         val q = Volley.newRequestQueue(activity)
-        val url = "http://192.168.100.5/ubaya//get_matkul.php"
+        val url = "http://192.168.0.38/ubaya/get_matkul.php"
 
         var stringRequest = StringRequest(
                 Request.Method.POST, url,

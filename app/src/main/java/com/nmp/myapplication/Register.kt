@@ -21,7 +21,7 @@ class Register : AppCompatActivity() {
         btnDaftar.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val q = Volley.newRequestQueue(this)
-            val url = "http://192.168.100.5/ubaya/register.php"
+            val url = "http://192.168.0.38/ubaya/register.php"
 
             if(txtNRP.text.toString().length > 0 && txtPIN.text.toString().length > 0 && txtUlangiPIN.text.toString().length > 0 && txtNama.text.toString().length > 0 && txtTahunMasuk.text.toString().length > 0)
             {

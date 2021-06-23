@@ -23,7 +23,7 @@ class UbahMatkulActivity : AppCompatActivity() {
 
         fun volley(){
             val q = Volley.newRequestQueue(this)
-            val url = "http://10.0.2.2/mylulus/ubah_matkul.php"
+            val url = "http://192.168.0.38/ubaya/ubah_matkul.php"
 
             var stringRequest = StringRequest(
                 Request.Method.POST, url,

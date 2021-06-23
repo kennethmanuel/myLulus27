@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
             if (nrp.isNotEmpty() && pin.isNotEmpty()) {
                 if (nrp.length == 9 && pin.length == 8){
                     val q = Volley.newRequestQueue(this)
-                    val url = "http://192.168.100.5/ubaya/get_mahasiswa.php"
+                    val url = "http://192.168.0.38/ubaya/get_mahasiswa.php"
                     val stringRequest = object : StringRequest(
                         Method.POST, url,
                         {

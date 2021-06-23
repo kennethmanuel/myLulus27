@@ -34,7 +34,7 @@ class fragmentKelulusan : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
         val q = Volley.newRequestQueue(activity)
-        val url = "http://192.168.100.5/ubaya/cek_lulus"
+        val url = "http://192.168.0.38/ubaya/cek_lulus"
 
         val stringRequest = object : StringRequest(
                 Method.POST, url,
@@ -45,22 +45,26 @@ class fragmentKelulusan : Fragment() {
                     //first, check the result key
                     if (obj.getString("status") == "ok") {
                         //get the JSON obj
-                        val data = obj.getJSONArray("data")
+                        val data = obj.getJSONArray("hasil")
                         val mhsObj = data.getJSONObject(0)
 
                         //put mahasiswa NRP, nama, and angkatan to global
-                        Global.ipk = mhsObj.getInt("ipk")
-                        Global.nama = mhsObj.getString("nama")
-                        Global.angkatan = mhsObj.getInt("angkatan")
-
+                        Global.ipk = mhsObj.getDouble("ipk")
+                        Global.totalSks = mhsObj.getInt("sks")
+                        Global.totalNilaiD = mhsObj.getInt("nilai_d")
                     }
                 },
                 {
                     Log.e("apiresult", it.message.toString())
                 }
         ){
-
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["nrp"] = Global.nrp
+                return params
+            }
         }
+        q.add(stringRequest)
     }
 
     override fun onCreateView(
