@@ -18,4 +18,7 @@ object Global {
     val KODE_MATKUL = "KODE_MATKUL"
     val NAMA_MATKUL = "NAMA_MATKUL"
     val SKS_MATKUL = "SKS_MATKUL"
+    var ipk: Double = 0.0
+    var totalSks: Int =0
+    var totalNilaiD: Int = 0
 }
