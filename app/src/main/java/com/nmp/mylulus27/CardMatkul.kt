@@ -1,4 +1,4 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

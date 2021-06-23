@@ -1,17 +1,16 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.drawer_header.view.*
 import kotlinx.android.synthetic.main.drawer_layout.*
 
 class MainActivity : AppCompatActivity() {
@@ -80,7 +79,21 @@ class MainActivity : AppCompatActivity() {
                 curItem = 2
             }
             else if (it.itemId == R.id.itemHubungi){
-                it.setChecked(true)
+                val sendIntent = Intent().apply {
+                    //Intent action -> sebuah konstanta String yang menspesifikasikan aksi generic apa yang akan kita pilih.
+                    this.action = Intent.ACTION_SEND
+                    //URI data -> If the picked action is ACTION_SEND -> need to specify what type of data that'll be sent.
+                    this.data = Uri.parse("mailto:")
+                    this.type = "text/plain"
+                    //Optionally, you can add extras to include more info, such as email recipients (EXTRA_EMAIL, EXTRA_CC, dll), the email subjects (EXTRA_SUBJECT), dll.
+                    this.putExtra(Intent.EXTRA_EMAIL, arrayOf("mylulus@unit.ubaya.ac.id"))
+                    this.putExtra(Intent.EXTRA_SUBJECT, "Bug Aplikasi")
+                    this.putExtra(Intent.EXTRA_TEXT, "Halo, perkenalkan nama saya ${Global.nama} dengan NRP ${Global.nrp}. Saya ingin menginformasikan bahwa terdapat bug dalam aplikasi yang mengganggu aktivitas saya. Terima kasih.")
+                }
+
+                //Android Sharesheet gives users the ability to share info with the right person, relevant app suggestions, all with a single tap.
+                val shareIntent = Intent.createChooser(sendIntent, "Kirim pesan menggunakan")
+                startActivity(shareIntent)
             }
             else if (it.itemId == R.id.itemKeluar){
                 val intent = Intent(this, LoginActivity::class.java)

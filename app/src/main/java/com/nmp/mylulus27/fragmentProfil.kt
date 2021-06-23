@@ -1,4 +1,4 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

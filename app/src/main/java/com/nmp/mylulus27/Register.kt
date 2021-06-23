@@ -1,4 +1,4 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_register.*
+import org.json.JSONObject
 
 class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +19,7 @@ class Register : AppCompatActivity() {
         btnDaftar.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val q = Volley.newRequestQueue(this)
-            val url = "http://192.168.0.38/ubaya/register.php"
+            val url = "http://10.0.2.2/mylulus/register.php"
 
             if(txtNRP.text.toString().length > 0 && txtPIN.text.toString().length > 0 && txtUlangiPIN.text.toString().length > 0 && txtNama.text.toString().length > 0 && txtTahunMasuk.text.toString().length > 0)
             {
@@ -31,7 +29,7 @@ class Register : AppCompatActivity() {
                     {
                         if(txtTahunMasuk.text.toString().length == 4)
                         {
-                            if(txtPIN.text.toString() == txtUlangiPIN.text.toString())
+                            if(txtPIN.text.toString().equals(txtUlangiPIN.text.toString()))
                             {
                                 val nrp = txtNRP.text.toString()
                                 val pin = txtPIN.text.toString()
@@ -41,14 +39,18 @@ class Register : AppCompatActivity() {
                                 val stringRequest = object : StringRequest(
                                     Method.POST, url,
                                     {
-                                        Log.d("register", it)
-                                        finish()
+                                        val data = JSONObject(it)
+                                        if(data.getString("result").equals("OK")){
+                                            Toast.makeText(this, "Data berhasil ditambah! Silahkan melakukan login kembali.", Toast.LENGTH_SHORT).show()
+                                            finish()
+                                        }
                                     },
                                     {
-                                        Log.d("register", it.message.toString())
+                                        Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
                                     }) {
                                     override fun getParams(): MutableMap<String, String> {
                                         val params = HashMap<String, String>()
+                                        params.put("submit","Data exists.")
                                         params.put("nrp", nrp)
                                         params.put("pin", pin)
                                         params.put("nama", nama)
@@ -57,7 +59,6 @@ class Register : AppCompatActivity() {
                                     }
                                 }
                                 q.add(stringRequest)
-                                Toast.makeText(this, "Register berhasil", Toast.LENGTH_SHORT).show()
                             }
                             else
                             {

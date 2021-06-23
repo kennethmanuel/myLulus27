@@ -1,6 +1,5 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,12 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.android.synthetic.main.activity_card_matkul.*
-import kotlinx.android.synthetic.main.activity_card_matkul.view.*
 import org.json.JSONObject
 import kotlinx.android.synthetic.main.fragment_matkul.view.*
 
@@ -54,7 +50,7 @@ class fragmentMatkul : Fragment() {
 
     fun volley(){
         val q = Volley.newRequestQueue(activity)
-        val url = "http://192.168.0.38/ubaya/get_matkul.php"
+        val url = "http://10.0.2.2/mylulus/get_matkul.php"
 
         var stringRequest = StringRequest(
                 Request.Method.POST, url,
@@ -64,7 +60,7 @@ class fragmentMatkul : Fragment() {
                     val obj = JSONObject(it)
 
                     if (obj.getString("result") == "OK"){
-                        val data = obj.getJSONArray("data")
+                        val data = obj.getJSONArray("message")
 
                         for (i in 0 until data.length()){
                             var playObj = data.getJSONObject(i)
