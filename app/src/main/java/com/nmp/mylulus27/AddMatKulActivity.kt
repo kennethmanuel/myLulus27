@@ -1,20 +1,13 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
-import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.RadioButton
 import android.widget.Toast
-import androidx.core.view.children
-import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_add_mata_kuliah.*
+import org.json.JSONObject
 
 class AddMatKulActivity : AppCompatActivity() {
 
@@ -44,7 +37,7 @@ class AddMatKulActivity : AppCompatActivity() {
             var semester = ""
             var nisbi = spinNisbi.getSelectedItem().toString()
             var thnAjaran = inputTahun.text.toString()
-            if (thnAjaran.isNotEmpty() && nisbi.isNotEmpty() && semester.isNotEmpty()) {
+            if (thnAjaran.isNotEmpty() && nisbi.isNotEmpty() && (rdoGasal.isChecked || rdoGenap.isChecked)) {
                 if(rdoGenap.isChecked()){
                     semester = "Genap"
                 }
@@ -57,7 +50,12 @@ class AddMatKulActivity : AppCompatActivity() {
                         Method.POST,
                         url,
                         {
-                            Toast.makeText(this, "Data berhasil diubah.", Toast.LENGTH_SHORT).show()
+                            val data = JSONObject(it)
+
+                            if(data.getString("result") == "OK"){
+                                Toast.makeText(this, "Data berhasil ditambah.", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }
                         },
                         {
                             Toast.makeText(this, "Data gagal diubah. Silahkan cek ulang kembali isian data.", Toast.LENGTH_LONG).show()

@@ -18,9 +18,8 @@
         $tahun_ambil = (int)$_POST['tahun'];
         $nisbi = $_POST['nisbi'];
 
-        $sql = "INSERT INTO mahasiswa_ambil_mk VALUES (?,?,?,?,?)";
+        $sql = "UPDATE mahasiswa_ambil_mk SET semester=$semester, tahun_ambil=$tahun_ambil, nisbi=$nisbi WHERE nrp=$nrp AND kode_mk=$kode_mk";
         if ($stmt = $c->prepare($sql)){
-            $stmt->bind_param('sssis', $nrp, $kode_mk, $semester, $tahun_ambil, $nisbi);
             $stmt->execute();
             //diasumsikan berhasil
             $arr = array(

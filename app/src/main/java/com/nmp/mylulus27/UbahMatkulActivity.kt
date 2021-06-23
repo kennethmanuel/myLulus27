@@ -1,14 +1,11 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.android.synthetic.main.activity_add_mata_kuliah.*
 import org.json.JSONObject
 
 class UbahMatkulActivity : AppCompatActivity() {

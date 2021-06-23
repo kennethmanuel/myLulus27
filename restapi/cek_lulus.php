@@ -31,7 +31,7 @@ $nrp = $_GET['nrp'];
 // Ambil data MK yang sudah diambil mahasiswa ini
 // Yang perlu diambil hanya kode, sks, dan nisbi
 // Ganti SQL ini jika skema basis data berubah
-$query = "SELECT ambil.kode_mk, mk.sks, ambil.nisbi FROM mahasiswa_ambil_mk ambil INNER JOIN mk ON mk.kode = ambil.kode_mk WHERE nrp = $nrp";
+$query = "SELECT ambil.kode_mk, mk.sks, ambil.nisbi FROM mahasiswa_ambil_mk ambil INNER JOIN mk ON mk.kode = ambil.kode_mk WHERE nrp = ?";
 if($stmt = $connect->prepare($query)) {
     $stmt->bind_param("s", $nrp);
     $stmt->execute();
@@ -49,8 +49,11 @@ if($stmt = $connect->prepare($query)) {
         // Kalau nisbinya D, hitung SKS-nya
         if($nisbi == "D") $total_d += $sks;
     }
-    // Hitung IPK
-    $ipk = $total_bobot / $total_sks;
+    $ipk = 0;
+    if($total_sks !=0){
+        // Hitung IPK
+        $ipk = $total_bobot / $total_sks;
+    }
     // Susun hasil ke array
     $hasil["status"] = "ok";
     $hasil["ipk"] = $ipk;
@@ -69,6 +72,6 @@ if($stmt = $connect->prepare($query)) {
     echo json_encode($hasil);
 } else {
     $hasil["status"] = "error";
-    $hasil["error"] = "Database error: $connect->error";
+    $hasil["error"] = "Database error!";
     die(json_encode($hasil));
 }

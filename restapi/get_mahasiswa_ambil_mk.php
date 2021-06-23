@@ -1,44 +1,39 @@
- <?php
+<?php
+    //disable error/warning in PHP jika ada echo line kecuali file JSON
     error_reporting(E_ERROR|E_PARSE);
-    $c = new mysqli("localhost","root","","kelulusan_ubaya");
+    $c = new mysqli("localhost", "root", "", "kelulusan_ubaya");
 
     if($c -> connect_errno){
-        $arr = array(
+        //generate json (berisi associative array (ada key -> value))
+        echo json_encode(array(
             "result" => "ERROR",
-            "message" => "Failed to connect"
-        );
-        die(json_encode($arr));
+            "message" => "Failed to connect DB"
+        ));
+        die();
     }
 
-    $c -> set_charset("UTF8"); 
-    //check the existence of POST
+    $c -> set_charset("UTF8"); //kalau hasil kosong
     if($_POST['submit']){
         $nrp = $_POST['nrp'];
-        $pin = $_POST['pin'];
-
-        $sql = "SELECT * FROM mahasiswa WHERE nrp=$nrp AND pin=$pin";
+        $sql = "SELECT * FROM mahasiswa_ambil_mk WHERE nrp=$nrp";
         $result = $c -> query($sql);
-
+        $array = array();
+    
         if($result -> num_rows > 0){
             while($obj = $result -> fetch_object()){
                 $array[] = $obj;
             }
             echo json_encode(array(
                 'result' => 'OK',
-                'message' => $array
+                'data' => $array
             ));
-        } else {
+        }
+        else{
             echo json_encode(array(
                 "result" => "ERROR",
                 "message" => 'No data found'
             ));
             die();
         }
-    } else {
-        echo json_encode(array(
-            'result' => 'ERROR',
-            'message' => 'Database is not okay!'
-        ));
-        die();
-    }
+    }  
 ?>

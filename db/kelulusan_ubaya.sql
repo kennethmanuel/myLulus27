@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `kelulusan_ubaya`
 --
-CREATE DATABASE IF NOT EXISTS `kelulusan_ubaya` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `kelulusan_ubaya` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `kelulusan_ubaya`;
 
 -- --------------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE `mahasiswa` (
   `pin` char(8) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `angkatan` smallint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -49,7 +49,7 @@ CREATE TABLE `mahasiswa_ambil_mk` (
   `semester` enum('gasal','genap') DEFAULT NULL,
   `tahun_ambil` smallint UNSIGNED DEFAULT NULL,
   `nisbi` enum('A','AB','B','BC','C','D','E') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE `mk` (
   `kode` char(8) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `sks` tinyint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `mk`

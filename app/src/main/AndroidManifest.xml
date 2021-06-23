@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nmp.myapplication">
+    package="com.nmp.mylulus27">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLulus27"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UbahMatkulActivity"></activity>
-        <activity android:name=".Register"></activity>
-        <activity android:name=".CardMatkul" />
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".AddMatKulActivity"></activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.nmp.mylulus27.UbahMatkulActivity"></activity>
+        <activity android:name="com.nmp.mylulus27.Register"></activity>
+        <activity android:name="com.nmp.mylulus27.CardMatkul" />
+        <activity android:name="com.nmp.mylulus27.MainActivity"></activity>
+        <activity android:name="com.nmp.mylulus27.AddMatKulActivity"></activity>
+        <activity android:name="com.nmp.mylulus27.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

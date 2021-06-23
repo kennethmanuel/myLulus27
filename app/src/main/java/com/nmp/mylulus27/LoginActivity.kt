@@ -1,9 +1,8 @@
-package com.nmp.myapplication
+package com.nmp.mylulus27
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -23,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
             if (nrp.isNotEmpty() && pin.isNotEmpty()) {
                 if (nrp.length == 9 && pin.length == 8){
                     val q = Volley.newRequestQueue(this)
-                    val url = "http://192.168.0.38/ubaya/get_mahasiswa.php"
+                    val url = "http://10.0.2.2/mylulus/get_mahasiswa.php"
                     val stringRequest = object : StringRequest(
                         Method.POST, url,
                         {
@@ -33,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
                             //first, check the result key
                             if(obj.getString("result") == "OK"){
                                 //get the JSON obj
-                                val data = obj.getJSONArray("data")
+                                val data = obj.getJSONArray("message")
                                 val mhsObj = data.getJSONObject(0)
 
                                 //put mahasiswa NRP, nama, and angkatan to global
@@ -45,6 +44,10 @@ class LoginActivity : AppCompatActivity() {
                                 startActivity(intent)
                                 finish()
                             }
+                            else{
+                                val data = obj.getString("message")
+                                Toast.makeText(this, data, Toast.LENGTH_SHORT).show()
+                            }
                         },
                         {
                             Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
@@ -55,12 +58,10 @@ class LoginActivity : AppCompatActivity() {
                             params["submit"] = "Data exists."
                             params["nrp"] = nrp
                             params["pin"] = pin
-
                             return params
                         }
                     }
                     q.add(stringRequest)
-
                 }
                 else{
                     Toast.makeText(this, "NRP atau/dan Pin memiliki panjang tidak sesuai kriteria!", Toast.LENGTH_LONG).show()
