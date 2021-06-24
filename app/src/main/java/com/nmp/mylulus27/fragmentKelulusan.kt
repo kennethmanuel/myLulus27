@@ -37,6 +37,8 @@ class fragmentKelulusan : Fragment() {
     var nilai_d_max:Int = 0
     var kesimpulan = ""
     var message = ""
+    var messageTidakLulus = "Saya belum bisa lulus menurut app myLulus."
+    var messageLulus = "Saya dinyatakan lulus dari app myLulus!"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,9 +97,10 @@ class fragmentKelulusan : Fragment() {
 
                             if (kesimpulan.equals("ng")) {
                                 txtLulusCekLulus.text = "TIDAK LULUS"
-                                message = ""
+                                message = messageTidakLulus
                                 txtLulusCekLulus.setTextColor(Color.parseColor("#710C04"))
                             } else {
+                                message = messageLulus
                                 txtLulusCekLulus.text = "LULUS"
                             }
                         }
@@ -134,7 +137,7 @@ class fragmentKelulusan : Fragment() {
         fabWhatsApp.setOnClickListener {
             //WHATSAPP INTENT
             val sendIntent = Intent(Intent.ACTION_VIEW).apply {
-                this.data = Uri.parse("https://api.whatsapp.com/send?phone=08985728990&text=" + message)
+                this.data = Uri.parse("https://api.whatsapp.com/send?phone=+628985728990&text=" + message)
             }
 
             //Android Sharesheet gives users the ability to share info with the right person, relevant app suggestions, all with a single tap.

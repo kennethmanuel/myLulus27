@@ -11,11 +11,14 @@ object Global {
         Nisbi(7, "E")
     )
     var matkuls:ArrayList<MataKuliah> = ArrayList()
-    var mahasiswa_ambil_mks:ArrayList<MhsAmbilMk> = ArrayList()
     var nrp:String = ""
     var nama:String = ""
     var angkatan:Int = 0
-    val KODE_MATKUL = "KODE_MATKUL"
+    val KODE_MATKUL:String = "KODE_MATKUL"
     val NAMA_MATKUL = "NAMA_MATKUL"
     val SKS_MATKUL = "SKS_MATKUL"
+    val SEMESTER = "SMT"
+    val TAHUN = "THN"
+    val NISBI = "NSBI"
+
 }

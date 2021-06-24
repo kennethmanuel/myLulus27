@@ -22,21 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="124dp"
-        android:text="Nama"
+        android:layout_marginTop="136dp"
+        android:text="myLulus"
         android:textAppearance="@style/pagetitleexpanded"
+        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtNrpMhs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="160419000"
-        android:textAppearance="@style/subtitle"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNamaMhs" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

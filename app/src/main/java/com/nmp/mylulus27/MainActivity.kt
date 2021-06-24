@@ -11,6 +11,7 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.drawer_header.view.*
 import kotlinx.android.synthetic.main.drawer_layout.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         drawerToggle.isDrawerIndicatorEnabled = true
         //To respond open/close drawer
         drawerToggle.syncState()
-
 
         with(fragments){
             add(fragmentMatkul())

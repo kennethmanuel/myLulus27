@@ -7,6 +7,9 @@ import android.widget.Toast
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_add_mata_kuliah.*
+import kotlinx.android.synthetic.main.activity_add_mata_kuliah.rdoGasal
+import kotlinx.android.synthetic.main.activity_add_mata_kuliah.rdoGenap
+import kotlinx.android.synthetic.main.activity_ubah_matkul.*
 import org.json.JSONObject
 
 class AddMatKulActivity : AppCompatActivity() {
@@ -22,7 +25,7 @@ class AddMatKulActivity : AppCompatActivity() {
 
         txtKodeMatkul.text = kodeMatkul
         txtMatkul.text = namaMatkul
-        txtSks.text = sksMatkul
+        txtSks.text = "$sksMatkul SKS"
 
         //Set adapter untuk nisbi
         val adapter = ArrayAdapter(this, R.layout.myspinner_layout, Global.nisbi)
@@ -53,8 +56,10 @@ class AddMatKulActivity : AppCompatActivity() {
                             val data = JSONObject(it)
 
                             if(data.getString("result") == "OK"){
-                                Toast.makeText(this, "Data berhasil ditambah.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, data.getString("message"), Toast.LENGTH_SHORT).show()
                                 finish()
+                            } else {
+                                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
                             }
                         },
                         {
