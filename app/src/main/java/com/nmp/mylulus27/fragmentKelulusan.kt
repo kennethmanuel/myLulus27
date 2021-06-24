@@ -61,8 +61,8 @@ class fragmentKelulusan : Fragment() {
                     if(!obj.has("error")) {
                         if (obj.getString("status").equals("ok")) {
                             //get the JSON obj
-                            ipk = String.format("%.2f", obj.getDouble("ipk")).toDouble()
-                            ipk_min = String.format("%.2f", obj.getDouble("ipk_min")).toDouble()
+                            ipk = String.format("%.3f", obj.getDouble("ipk")).toDouble()
+                            ipk_min = String.format("%.3f", obj.getDouble("ipk_min")).toDouble()
                             sks = obj.getInt("sks")
                             sks_min = obj.getInt("sks_min")
                             nilai_d = obj.getInt("nilai_d")
@@ -102,6 +102,7 @@ class fragmentKelulusan : Fragment() {
                             } else {
                                 message = messageLulus
                                 txtLulusCekLulus.text = "LULUS"
+                                txtLulusCekLulus.setTextColor(Color.parseColor("#006064"))
                             }
                         }
                     } else {
